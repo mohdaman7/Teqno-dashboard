@@ -6,8 +6,10 @@ import { useToast } from '../context/ToastContext';
 const resolveAssetUrl = (url) => {
   if (!url) return '';
   if (url.startsWith('http://') || url.startsWith('https://')) return url;
-  if (url.startsWith('/uploads')) return `http://localhost:5000${url}`;
-  return `http://localhost:3000${url}`;
+  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const portfolioBase = import.meta.env.VITE_PORTFOLIO_URL || 'http://localhost:3000';
+  if (url.startsWith('/uploads')) return `${apiBase}${url}`;
+  return `${portfolioBase}${url}`;
 };
 
 export default function MediaLibrary() {

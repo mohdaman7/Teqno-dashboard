@@ -20,8 +20,10 @@ const activityData = [
 const resolveAssetUrl = (url) => {
   if (!url) return '';
   if (url.startsWith('http://') || url.startsWith('https://')) return url;
-  if (url.startsWith('/uploads')) return `http://localhost:5000${url}`;
-  return `http://localhost:3000${url}`;
+  const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+  const portfolioBase = import.meta.env.VITE_PORTFOLIO_URL || 'http://localhost:3000';
+  if (url.startsWith('/uploads')) return `${apiBase}${url}`;
+  return `${portfolioBase}${url}`;
 };
 
 export default function Dashboard() {
@@ -30,6 +32,9 @@ export default function Dashboard() {
   const published = projects.filter(p => p.status === 'published');
   const withVideo = projects.filter(p => p.video);
   const recent = [...projects].slice(0, 4);
+
+  const settings = JSON.parse(localStorage.getItem('teqno_settings') || '{}');
+  const portfolioUrl = settings.portfolioUrl || import.meta.env.VITE_PORTFOLIO_URL || 'http://localhost:3000';
 
   return (
     <div className="page-enter">
@@ -161,7 +166,7 @@ export default function Dashboard() {
         <button className="btn-secondary" onClick={() => navigate('/media')}>
           <Film size={16} /> Media Library
         </button>
-        <a href="http://localhost:3000" target="_blank" rel="noreferrer" className="btn-secondary">
+        <a href={portfolioUrl} target="_blank" rel="noreferrer" className="btn-secondary">
           <Eye size={16} /> Preview Portfolio
           <ArrowUpRight size={13} />
         </a>

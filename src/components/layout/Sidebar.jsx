@@ -17,6 +17,9 @@ export default function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
 
+  const settings = JSON.parse(localStorage.getItem('teqno_settings') || '{}');
+  const portfolioUrl = settings.portfolioUrl || import.meta.env.VITE_PORTFOLIO_URL || 'http://localhost:3000';
+
   return (
     <aside
       style={{
@@ -86,7 +89,7 @@ export default function Sidebar() {
       <div style={{ padding: '12px 10px', borderTop: '1px solid var(--border)' }}>
         {!collapsed && (
           <a
-            href="http://localhost:3000"
+            href={portfolioUrl}
             target="_blank"
             rel="noreferrer"
             className="sidebar-link"
