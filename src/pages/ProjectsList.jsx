@@ -94,6 +94,7 @@ export default function ProjectsList() {
 
       {/* Table */}
       <motion.div className="glass" style={{ overflow: 'hidden' }} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+        <div className="table-scroll-wrapper">
         <table className="data-table">
           <thead>
             <tr>
@@ -199,6 +200,7 @@ export default function ProjectsList() {
             </AnimatePresence>
           </tbody>
         </table>
+        </div>
         {filtered.length === 0 && (
           <div style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--text-muted)' }}>
             <p style={{ fontSize: '0.875rem' }}>No projects found matching your filters.</p>

@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import { Bell, Search, User } from 'lucide-react';
+import { Bell, Search, User, Menu } from 'lucide-react';
 import { useState } from 'react';
 
 const routeTitles = {
@@ -10,7 +10,7 @@ const routeTitles = {
   '/settings': 'Settings',
 };
 
-export default function Header() {
+export default function Header({ onMenuToggle }) {
   const location = useLocation();
   const [query, setQuery] = useState('');
 
@@ -22,7 +22,7 @@ export default function Header() {
   const dateStr = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
   return (
-    <header style={{
+    <header className="header-bar" style={{
       height: 72,
       background: 'rgba(2,2,10,0.85)',
       backdropFilter: 'blur(20px)',
@@ -35,18 +35,23 @@ export default function Header() {
       top: 0,
       zIndex: 50,
     }}>
+      {/* Mobile hamburger */}
+      <button className="mobile-menu-btn" onClick={onMenuToggle}>
+        <Menu size={18} />
+      </button>
+
       {/* Title */}
-      <div style={{ flex: 1 }}>
-        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 700, color: '#fff', margin: 0 }}>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', fontWeight: 700, color: '#fff', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
           {title}
         </h1>
-        <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 2, letterSpacing: '0.02em' }}>
+        <p style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginTop: 2, letterSpacing: '0.02em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
           {dateStr}
         </p>
       </div>
 
-      {/* Search */}
-      <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+      {/* Search – hidden on mobile via CSS class */}
+      <div className="header-search" style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
         <Search size={15} style={{ position: 'absolute', left: 12, color: 'var(--text-muted)', pointerEvents: 'none' }} />
         <input
           className="form-input"
@@ -67,6 +72,7 @@ export default function Header() {
         color: 'var(--text-secondary)',
         transition: 'all 0.2s',
         position: 'relative',
+        flexShrink: 0,
       }}>
         <Bell size={16} />
         <span style={{
@@ -84,6 +90,7 @@ export default function Header() {
         border: '1px solid rgba(139,92,246,0.4)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         cursor: 'pointer',
+        flexShrink: 0,
       }}>
         <User size={17} color="var(--purple)" />
       </div>

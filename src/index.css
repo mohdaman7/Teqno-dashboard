@@ -353,3 +353,178 @@ select.form-input { appearance: none; cursor: pointer; }
   border-radius: var(--radius-md) !important;
   color: #fff !important;
 }
+
+/* ─── Mobile Sidebar Overlay ─── */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.sidebar-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ─── Mobile Menu Button ─── */
+.mobile-menu-btn {
+  display: none;
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: rgba(139,92,246,0.08);
+  border: 1px solid var(--border);
+  align-items: center; justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.mobile-menu-btn:hover {
+  border-color: var(--purple);
+  color: var(--purple);
+  background: rgba(139,92,246,0.14);
+}
+
+/* ─── Responsive Grid Utilities ─── */
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.grid-3col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 18px;
+  align-items: start;
+}
+
+/* ─── Scrollable Table Wrapper ─── */
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── Quick Actions Responsive ─── */
+.quick-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ─── Form Tabs Scrollable ─── */
+.form-tabs {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.form-tabs::-webkit-scrollbar { display: none; }
+
+/* ────────────────────────────────────────────
+   RESPONSIVE BREAKPOINTS
+   ──────────────────────────────────────────── */
+
+/* ─── Tablet & below (< 768px) ─── */
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  /* Sidebar becomes a slide-over drawer */
+  .sidebar-desktop {
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  }
+  .sidebar-desktop.open {
+    transform: translateX(0);
+  }
+
+  /* Main content area takes full width */
+  .main-content-area {
+    margin-left: 0 !important;
+  }
+
+  /* Header adaptations */
+  .header-search {
+    display: none;
+  }
+  .header-bar {
+    padding: 0 16px !important;
+    gap: 12px !important;
+  }
+
+  /* Dashboard grids stack */
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Form grids stack */
+  .grid-2col {
+    grid-template-columns: 1fr;
+  }
+  .grid-3col {
+    grid-template-columns: 1fr;
+  }
+
+  /* Quick actions stack */
+  .quick-actions {
+    flex-direction: column;
+  }
+  .quick-actions .btn-primary,
+  .quick-actions .btn-secondary,
+  .quick-actions a.btn-secondary {
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* Main content reduced padding */
+  .main-area-inner {
+    padding: 16px !important;
+  }
+
+  /* Toast positioning */
+  .toast-container {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+  .toast {
+    min-width: unset;
+  }
+}
+
+/* ─── Small phones (< 480px) ─── */
+@media (max-width: 480px) {
+  .header-bar {
+    padding: 0 12px !important;
+    gap: 8px !important;
+  }
+  .header-bar h1 {
+    font-size: 1rem !important;
+  }
+
+  .main-area-inner {
+    padding: 12px !important;
+  }
+
+  .stat-cards-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+  }
+
+  .dropzone {
+    padding: 24px 16px;
+  }
+}

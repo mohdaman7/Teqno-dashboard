@@ -11,7 +11,7 @@ const defaultSettings = {
   linkedin: 'https://linkedin.com/company/teqnocapital',
   twitter: 'https://twitter.com/teqnocapital',
   accent: '#a855f7',
-  portfolioUrl: 'http://localhost:3000',
+  portfolioUrl: 'https://portfolio.teqnocapital.com',
 };
 
 export default function Settings() {
@@ -68,7 +68,7 @@ export default function Settings() {
         <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#fff', fontSize: '0.95rem', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}>
           <Globe size={16} color="var(--purple)" /> Site Identity
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+        <div className="grid-2col">
           <div><label className="form-label">Site Title</label><input className="form-input" value={settings.siteTitle} onChange={e => set('siteTitle', e.target.value)} /></div>
           <div><label className="form-label">Tagline</label><input className="form-input" value={settings.tagline} onChange={e => set('tagline', e.target.value)} /></div>
           <div><label className="form-label">Contact Email</label><input className="form-input" type="email" value={settings.email} onChange={e => set('email', e.target.value)} /></div>
@@ -112,7 +112,7 @@ export default function Settings() {
           <Download size={16} color="var(--amber)" /> Data Management
         </h3>
         <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginBottom: 18 }}>Export all projects and settings as a JSON backup, or import a previous backup.</p>
-        <div style={{ display: 'flex', gap: 12 }}>
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           <button className="btn-secondary" onClick={handleExport}><Download size={15} /> Export Backup</button>
           <label className="btn-secondary" style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
             <Upload size={15} /> Import Backup

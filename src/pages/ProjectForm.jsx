@@ -145,7 +145,7 @@ export default function ProjectForm() {
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: 6, marginBottom: 22, borderBottom: '1px solid var(--border)', paddingBottom: 0 }}>
+      <div className="form-tabs" style={{ marginBottom: 22 }}>
         {tabs.map(t => (
           <button
             key={t}
@@ -169,7 +169,7 @@ export default function ProjectForm() {
         {/* ── BASIC TAB ── */}
         {activeTab === 'basic' && (
           <div className="glass" style={{ padding: 28, display: 'flex', flexDirection: 'column', gap: 22 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+            <div className="grid-2col">
               <div>
                 <label className="form-label">Project Title *</label>
                 <input className="form-input" value={form.title} onChange={handleTitleChange} placeholder="My Awesome Project" />
@@ -179,7 +179,7 @@ export default function ProjectForm() {
                 <input className="form-input" value={form.slug} onChange={e => set('slug', toSlug(e.target.value))} placeholder="my-awesome-project" />
               </div>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+            <div className="grid-2col">
               <div>
                 <label className="form-label">Category</label>
                 <select className="form-input" value={form.category} onChange={e => set('category', e.target.value)}>
@@ -244,7 +244,7 @@ export default function ProjectForm() {
             {/* Client info */}
             <div className="glass" style={{ padding: 24 }}>
               <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, color: '#fff', marginBottom: 18, fontSize: '0.95rem' }}>Client Information</h3>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+              <div className="grid-3col">
                 <div><label className="form-label">Client Name</label><input className="form-input" value={form.client} onChange={e => set('client', e.target.value)} placeholder="Acme Corp." /></div>
                 <div><label className="form-label">Duration</label><input className="form-input" value={form.duration} onChange={e => set('duration', e.target.value)} placeholder="3 Months" /></div>
                 <div><label className="form-label">Scope</label><input className="form-input" value={form.scope} onChange={e => set('scope', e.target.value)} placeholder="Design & Dev" /></div>
@@ -329,7 +329,7 @@ export default function ProjectForm() {
       </motion.div>
 
       {/* Save Actions */}
-      <div style={{ display: 'flex', gap: 12, marginTop: 28, justifyContent: 'flex-end' }}>
+      <div style={{ display: 'flex', gap: 12, marginTop: 28, justifyContent: 'flex-end', flexWrap: 'wrap' }}>
         <button className="btn-secondary" onClick={() => navigate('/projects')}>Cancel</button>
         <button className="btn-secondary" style={{ gap: 7 }} onClick={() => handleSave('draft')} disabled={saving}>
           <FileText size={15} /> {saving ? 'Saving…' : 'Save as Draft'}

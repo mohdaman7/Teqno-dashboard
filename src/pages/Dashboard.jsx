@@ -53,7 +53,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stat Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 18, marginBottom: 32 }}>
+      <div className="stat-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 18, marginBottom: 32 }}>
         <StatCard icon={FolderOpen} label="Total Projects"  value={projects.length}  color="var(--purple)" trend={12} delay={0} />
         <StatCard icon={Globe}     label="Published"        value={published.length} color="var(--emerald)" trend={8}  delay={0.05} />
         <StatCard icon={Film}      label="With Videos"      value={withVideo.length} color="var(--cyan)"    trend={25} delay={0.1} />
@@ -61,7 +61,7 @@ export default function Dashboard() {
       </div>
 
       {/* Chart + Recent */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: 18, alignItems: 'start' }}>
+      <div className="dashboard-grid">
 
         {/* Views Chart */}
         <motion.div
@@ -158,7 +158,8 @@ export default function Dashboard() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35 }}
-        style={{ marginTop: 24, display: 'flex', gap: 14 }}
+        className="quick-actions"
+        style={{ marginTop: 24 }}
       >
         <button className="btn-primary" onClick={() => navigate('/projects/new')}>
           <PlusCircle size={16} /> Add New Project
